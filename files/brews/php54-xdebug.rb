@@ -5,7 +5,6 @@ class Php54Xdebug < AbstractPhp54Extension
   homepage 'http://xdebug.org'
   url 'http://xdebug.org/files/xdebug-2.2.1.tgz'
   sha1 '8b4aec5f68f2193d07bf4839ee46ff547740ed7e'
-  head 'https://github.com/derickr/xdebug.git'
 
   def extension_type; "zend_extension"; end
 
