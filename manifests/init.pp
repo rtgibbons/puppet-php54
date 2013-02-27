@@ -1,12 +1,47 @@
 class php54 {
   require homebrew
 
-  homebrew::formula { 'php54':
-    before => Package['boxen/brews/php54']
+  exec { 'tap-josegonzalez-php':
+    command => "brew tap josegonzalez/php",
+    creates => "${homebrew::config::tapsdir}/josegonzalez-php",
+    before  => Package['php54']
   }
 
-  package { 'boxen/brews/php54':
-    ensure => '5.4.11-boxen1'
+  exec { 'tap-homebrew-dupes':
+    command => "brew tap homebrew/dupes",
+    creates => "${homebrew::config::tapsdir}/homebrew-dupes",
+    before  => Package['zlib']
   }
 
-} 
+  package { 'zlib': 
+    ensure => present
+  }
+
+  package { 'php54':
+    ensure          => present,
+    install_options => [
+      '--with-fpm',
+      '--without-apache'
+    ],
+    require         => Package['zlib']
+  }
+
+  package { 'php54-apc': 
+    ensure  => present,
+    require => {ackage['php54']
+  }
+
+  package { 'php54-mcrypt': 
+    ensure  => present,
+    require => {ackage['php54']
+  }
+
+  package { 'php54-imagick': 
+    ensure  => present,
+    require => {ackage['php54']
+  }
+
+
+  package { 'php'}
+
+}
