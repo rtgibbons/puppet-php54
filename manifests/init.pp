@@ -41,6 +41,11 @@ class php54 {
     require => {ackage['php54']
   }
 
+  package { 'php54-xdebug':
+    ensure  => present,
+    require => {ackage['php54']
+  }
+
 
   package { 'php'}
 
