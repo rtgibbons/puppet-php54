@@ -28,22 +28,22 @@ class php54 {
 
   package { 'php54-apc': 
     ensure  => present,
-    require => {ackage['php54']
+    require => Package['php54']
   }
 
   package { 'php54-mcrypt': 
     ensure  => present,
-    require => {ackage['php54']
+    require => Package['php54']
   }
 
   package { 'php54-imagick': 
     ensure  => present,
-    require => {ackage['php54']
+    require => Package['php54']
   }
 
   package { 'php54-xdebug':
     ensure  => present,
-    require => {ackage['php54']
+    require => Package['php54']
   }
 
 
