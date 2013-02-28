@@ -14,7 +14,7 @@ class php54 {
     before  => Package['zlib']
   }
 
-  package { 'zlib': 
+  package { 'zlib':
     ensure => present
   }
 
@@ -27,12 +27,12 @@ class php54 {
     require         => Package['zlib']
   }
 
-  package { 'php54-apc': 
+  package { 'php54-apc':
     ensure  => present,
     require => Package['php54']
   }
 
-  package { 'php54-mcrypt': 
+  package { 'php54-mcrypt':
     ensure  => present,
     require => Package['php54']
   }
@@ -58,7 +58,7 @@ class php54 {
     content => template('php54/php.ini.erb')
   }
 
-  file { '/opt/boxen/homebrew/etc/php/5.4/php-fpm.conf': 
+  file { '/opt/boxen/homebrew/etc/php/5.4/php-fpm.conf':
     content => template('php54/php-fpm.conf.erb')
   }
 }
