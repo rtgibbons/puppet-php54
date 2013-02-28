@@ -60,7 +60,7 @@ class php54 {
 
   file { "${php54::config::homebrewconfigdir}/php-fpm.conf":
     content => template('php54/php-fpm.conf.erb'),
-    notify  => Service['dev.php-fpm']
+    notify  => Service['dev.php-fpm'],
     require => Package['php54']
   }
 
