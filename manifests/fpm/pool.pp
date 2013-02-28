@@ -1,9 +1,10 @@
 define php54::fpm::pool(
   $timezone = 'America/Denver'
 ) {
-  require boxen::config
+  require php54::config
+  require homebrew::config
 
-  file { "${boxen::config::configdir}/php-fpm.d/${title}.conf":
+  file { "${php54::config::fpmpooldir}/${title}.conf":
     content => template('php54/fpm/pool.conf.erb')
   }
 }

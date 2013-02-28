@@ -1,10 +1,10 @@
 [<%= title %>]
-prefix = <%= scope.lookupvar('boxen::config::home') %>
+prefix = <%= scope.lookupvar('php54::config::datadir') %>
 
 user = <%= scope.lookupvar('::luser') %>
 group = staff
 
-listen = <%= scope.lookupvar('boxen::config::socketdir') %>/$pool/php-fpm.sock
+listen = <%= scope.lookupvar('php54::config::socketdir') %>/$pool.sock
 listen.owner = <%= scope.lookupvar('::luser') %>
 listen.group = staff
 listen.mode = 0666
@@ -16,9 +16,9 @@ pm.process_idle_timeout = 10s;
 pm.status_path = /fpm-status
 ping.path = /fpm-ping
 
-access.log = <%= scope.lookupvar('boxen::config::logdir') %>/php-fpm/$pool.access.log
+access.log = <%= scope.lookupvar('php54::config::logdir') %>/$pool.access.log
 ;access.format = "%R - %u %t \"%m %r%Q%q\" %s %f %{mili}d %{kilo}M %C%%"
-slowlog = <%= scope.lookupvar('boxen::config::logdir') %>/php-fpm/$pool.slow.log
+slowlog = <%= scope.lookupvar('php54::config::logdir') %>/$pool.slow.log
 request_slowlog_timeout = 2s
 
 ;chroot =

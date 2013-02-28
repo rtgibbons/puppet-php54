@@ -1,5 +1,5 @@
 class php54 {
-  require boxen::config
+  require php54::config
   require homebrew
 
   exec { 'tap-josegonzalez-php':
@@ -42,23 +42,37 @@ class php54 {
     require => Package['php54']
   }
 
-  file { "${boxen::config::datadir}/php-fpm":
+  file { [
+    $php54::config::configdir,
+    $php54::config::datadir,
+    $php54::config::logdir,
+    $php54::config::fpmpooldir,
+    $php54::config::socketdir
+    ]:
     ensure => directory
   }
 
-  file { "${boxen::config::socketdir}/php-fpm":
-    ensure => directory
+  file { "${php54::config::homebrewconfigdir}/php.ini":
+    content => template('php54/php.ini.erb'),
+    require => Package['php54']
   }
 
-  file { "${boxen::config::logdir}/php-fpm":
-    ensure => directory
+  file { "${php54::config::homebrewconfigdir}/php-fpm.conf":
+    content => template('php54/php-fpm.conf.erb'),
+    require => Package['php54']
   }
 
-  file { '/opt/boxen/homebrew/etc/php/5.4/php.ini':
-    content => template('php54/php.ini.erb')
+  file { $php54::config::configfile:
+    ensure  => link,
+    target  => "${php54::config::homebrewconfigdir}/php.ini",
+    require => File["${php54::config::homebrewconfigdir}/php.ini"]
   }
 
-  file { '/opt/boxen/homebrew/etc/php/5.4/php-fpm.conf':
-    content => template('php54/php-fpm.conf.erb')
+  file { $php54::config::fpmconfigfile:
+    ensure  => link,
+    target  => "${php54::config::homebrewconfigdir}/php-fpm.conf",
+    require => File["${php54::config::homebrewconfigdir}/php-fpm.conf"]
+  }
+
   }
 }
