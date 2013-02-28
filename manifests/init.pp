@@ -54,11 +54,13 @@ class php54 {
 
   file { "${php54::config::homebrewconfigdir}/php.ini":
     content => template('php54/php.ini.erb'),
+    notify  => Service['dev.php-fpm'],
     require => Package['php54']
   }
 
   file { "${php54::config::homebrewconfigdir}/php-fpm.conf":
     content => template('php54/php-fpm.conf.erb'),
+    notify  => Service['dev.php-fpm']
     require => Package['php54']
   }
 
@@ -68,11 +70,23 @@ class php54 {
     require => File["${php54::config::homebrewconfigdir}/php.ini"]
   }
 
+  php54::fpm::pool { 'php-fpm-general-pool': }
+
   file { $php54::config::fpmconfigfile:
     ensure  => link,
     target  => "${php54::config::homebrewconfigdir}/php-fpm.conf",
     require => File["${php54::config::homebrewconfigdir}/php-fpm.conf"]
   }
 
+  file { '/Library/LaunchDaemons/dev.php-fpm.plist':
+    content => template('php54/dev.php-fpm.plist.erb'),
+    group   => 'wheel',
+    notify  => Service['dev.php-fpm'],
+    owner   => 'root'
+  }
+
+  service { 'dev.php-fpm':
+    ensure  => running,
+    require => Package['php54']
   }
 }
