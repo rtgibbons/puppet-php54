@@ -3,13 +3,13 @@ class php54 {
   require homebrew
 
   exec { 'tap-josegonzalez-php':
-    command => "brew tap josegonzalez/php",
+    command => 'brew tap josegonzalez/php',
     creates => "${homebrew::config::tapsdir}/josegonzalez-php",
     before  => Package['php54']
   }
 
   exec { 'tap-homebrew-dupes':
-    command => "brew tap homebrew/dupes",
+    command => 'brew tap homebrew/dupes',
     creates => "${homebrew::config::tapsdir}/homebrew-dupes",
     before  => Package['zlib']
   }
