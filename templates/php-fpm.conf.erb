@@ -1,0 +1,25 @@
+;;;;;;;;;;;;;;;;;;;;;
+; FPM Configuration ;
+;;;;;;;;;;;;;;;;;;;;;
+
+; All relative paths in this configuration file are relative to PHP's install
+; prefix (<%= scope.lookupvar('homebrew::config::installdir') %>/Cellar/php54/5.4.11). 
+; This prefix can be dynamicaly changed by using the '-p' argument from the command line.
+
+;;;;;;;;;;;;;;;;;;
+; Global Options ;
+;;;;;;;;;;;;;;;;;;
+
+[global]
+pid = <%= scope.lookupvar('boxen::config::datadir') %>/php-fpm/php-fpm.pid
+error_log = <%= scope.lookupvar('boxen::config::socketdir') %>/php-fpm/php-fpm.log
+log_level = notice
+process.max = 128
+daemonize = yes
+
+;;;;;;;;;;;;;;;;;;;;
+; Pool Definitions ;
+;;;;;;;;;;;;;;;;;;;;
+
+include = <%= scope.lookupvar('boxen::config::home') %>/php-fpm.d/*.conf
+

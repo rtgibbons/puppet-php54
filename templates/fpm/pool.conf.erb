@@ -1,0 +1,27 @@
+[<%= title %>]
+prefix = <%= scope.lookupvar('boxen::config::home') %>
+
+user = <%= scope.lookupvar('::luser') %>
+group = staff
+
+listen = <%= scope.lookupvar('boxen::config::socketdir') %>/$pool/php-fpm.sock
+listen.owner = <%= scope.lookupvar('::luser') %>
+listen.group = staff
+listen.mode = 0666
+
+pm = ondemand
+pm.max_children = 2
+pm.process_idle_timeout = 10s;
+;pm.max_requests = 500
+pm.status_path = /fpm-status
+ping.path = /fpm-ping
+
+access.log = <%= scope.lookupvar('boxen::config::logdir') %>/php-fpm/$pool.access.log
+;access.format = "%R - %u %t \"%m %r%Q%q\" %s %f %{mili}d %{kilo}M %C%%"
+slowlog = <%= scope.lookupvar('boxen::config::logdir') %>/php-fpm/$pool.slow.log
+request_slowlog_timeout = 2s
+
+;chroot =
+;chdir = /var/www
+
+catch_workers_output = yes

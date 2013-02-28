@@ -1,4 +1,5 @@
 class php54 {
+  require boxen::config
   require homebrew
 
   exec { 'tap-josegonzalez-php':
@@ -36,17 +37,28 @@ class php54 {
     require => Package['php54']
   }
 
-  package { 'php54-imagick': 
-    ensure  => present,
-    require => Package['php54']
-  }
-
   package { 'php54-xdebug':
     ensure  => present,
     require => Package['php54']
   }
 
+  file { "${boxen::config::datadir}/php-fpm":
+    ensure => directory
+  }
 
-  package { 'php'}
+  file { "${boxen::config::socketdir}/php-fpm":
+    ensure => directory
+  }
 
+  file { "${boxen::config::logdir}/php-fpm":
+    ensure => directory
+  }
+
+  file { '/opt/boxen/homebrew/etc/php/5.4/php.ini':
+    content => template('php54/php.ini.erb')
+  }
+
+  file { '/opt/boxen/homebrew/etc/php/5.4/php-fpm.conf': 
+    content => template('php54/php-fpm.conf.erb')
+  }
 }
