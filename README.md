@@ -1,11 +1,6 @@
 # Template Puppet Module for Boxen
 
-An example of how we write Puppet modules for Boxen. Replace this
-paragraph with a short explanation of what the heck makes your module
-useful.
-
-This module also installs PEAR from a package manager and aids you in installing
-the latest versions (or specified versions) of PEAR packages.
+This modules installs PHP 5.4 in the Boxen/Puppet environment. I have a mac. I have not tested this on anything other than a mac and Mountain Lion Mac OS 10.8.
 
 ## Usage: 
 
@@ -15,22 +10,9 @@ include php54
 
 ### PEAR Usage:
 
-This module will try to install PEAR via the package name `php-pear` (this is
-also configurable) and will then allow the installation of PEAR packages
-through the pear::package function.
-
-Here is an example of installing the default `php-pear` package and upgrading
+By default, pear is install with the PHP54 package. The PEAR class, however is an old version. Here is an example of upgrading
 PEAR, then installing Console_Table and finally installing drush 4.5.0 from a
 third-party PEAR repository, pear.drush.org.
-
-#### Version numbers are supported.
-
-```
-php54::pear { "drush":
-  version => "4.5.0",
-  repository => "pear.drush.org",
-}
-```
 
 #### If no version number is supplied, the latest stable release will be installed. In this case, upgrade PEAR to 1.9.2+ so it can use pear.drush.org without complaint.
 
@@ -45,10 +27,10 @@ php54::pear { "Console_Table": }
 php54::pear { "drush":
   version => "4.5.0",
   repository => "pear.drush.org",
-  require => Pear::Package["PEAR"],
 }
 ```
 
+To install the latest recommended version, simply leave off the version number.
 
 ## Required Puppet Modules
 
@@ -57,7 +39,7 @@ php54::pear { "drush":
 
 ## Development
 
-Write code. Run `script/cibuild` to test it. Check the `script`
+Write code. Run `script/build` from the Boxen repo to test it. Check the `script`
 directory for other useful tools.
 
 ## Credit
