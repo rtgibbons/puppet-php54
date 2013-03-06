@@ -1,5 +1,5 @@
 define php54::fpm::pool(
-  $timezone = 'America/Denver'
+  $timezone = 'America/Los_Angeles'
 ) {
   require php54::config
   require homebrew::config
