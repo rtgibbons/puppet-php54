@@ -1,5 +1,6 @@
 class php54 {
   require php54::config
+  require php54::pear
   require homebrew
 
   exec { 'tap-josegonzalez-php':
