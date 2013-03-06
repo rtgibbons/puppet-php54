@@ -15,6 +15,5 @@ class php54::pear(
     provider => "pear",
     source => $pear_source,
     ensure => $version,
-    require => Class["pear"],
   }
 }
