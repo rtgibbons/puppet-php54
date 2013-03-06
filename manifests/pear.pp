@@ -1,5 +1,5 @@
 # Add a define to allow installing PEAR packages.
-define php54::pear (
+class php54::pear (
   $package = $title,
   $repository = "pear.php.net",
   $version = "latest"
