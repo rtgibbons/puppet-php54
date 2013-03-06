@@ -12,7 +12,7 @@ define php54::pear(
 
   package { "pear-${repository}-${package}":
     name => $package,
-    "provider" => "pear",
+    provider => "pear",
     source => $pear_source,
     ensure => $version,
   }
