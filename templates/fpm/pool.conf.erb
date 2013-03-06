@@ -4,7 +4,7 @@ prefix = <%= scope.lookupvar('php54::config::datadir') %>
 user = <%= scope.lookupvar('::luser') %>
 group = staff
 
-listen = <%= scope.lookupvar('php54::config::socketdir') %>/$pool.sock
+listen = <%= scope.lookupvar('php54::config::socketdir') %>/$pool
 listen.owner = <%= scope.lookupvar('::luser') %>
 listen.group = staff
 listen.mode = 0666

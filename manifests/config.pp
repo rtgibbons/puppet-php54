@@ -7,7 +7,7 @@ class php54::config {
   $executable        = "${boxen::config::homebrewdir}/sbin/php-fpm"
   $logdir            = "${boxen::config::logdir}/php-fpm"
   $pidfile           = "${datadir}/php-fpm.pid"
-  $socketdir         = "${boxen::config::socketdir}/php-fpm"
+  $socketdir         = "${boxen::config::socketdir}"
   $homebrewconfigdir = "${boxen::config::homebrewdir}/etc/php/5.4"
   $fpmconfigfile     = "${configdir}/php-fpm.conf"
   $fpmpooldir        = "${boxen::config::configdir}/php-fpm.d"
