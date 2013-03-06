@@ -1,5 +1,5 @@
 # Add a define to allow installing PEAR packages.
-class php54::pear(
+define php54::pear(
   $package = $title,
   $repository = "pear.php.net",
   $version = "latest"
@@ -12,7 +12,7 @@ class php54::pear(
 
   package { "pear-${repository}-${package}":
     name => $package,
-    provider => "pear",
+    "provider" => "pear",
     source => $pear_source,
     ensure => $version,
   }
