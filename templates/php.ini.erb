@@ -29,7 +29,7 @@ expose_php = On
 
 max_execution_time = 30
 max_input_time = 60
-memory_limit = 128M
+memory_limit = <%= ENV['PHP_MEMORY_LIMIT'] || "128M" %>
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Error handling and logging ;
@@ -91,7 +91,7 @@ default_socket_timeout = 60
 cli_server.color = On
 
 [Date]
-date.timezone = <%= timezone %>
+date.timezone = <%= system_timezone %>
 
 [Pdo_mysql]
 pdo_mysql.cache_size = 2000
