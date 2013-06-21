@@ -46,8 +46,7 @@ class php54 {
     $php54::config::configdir,
     $php54::config::datadir,
     $php54::config::logdir,
-    $php54::config::fpmpooldir,
-    $php54::config::socketdir
+    $php54::config::fpmpooldir
     ]:
     ensure => directory
   }
